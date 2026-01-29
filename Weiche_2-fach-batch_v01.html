@@ -23,7 +23,7 @@
 </head>
 <body>
 
-    <h3 style="margin: 5px 0; color: #eee; font-weight: 300;">Materialfluss auf Mafu-Transportsystem (2 Pfade)</h3>
+    <h3 style="margin: 5px 0; color: #eee; font-weight: 300;">Materialfluss auf Batch-Transportsystem (2 Pfade)</h3>
     <canvas id="simCanvas" width="1000" height="320"></canvas>
 
     <div class="stats-container">
@@ -34,7 +34,7 @@
         <div class="control-group">
             <label>Weichen-Logik</label>
             <select id="logicMode">
-                <option value="MAFU">MAFU</option>
+                <option value="Batch">Batch</option>
                 <option value="LISI">Round-Robin</option>
             </select>
         </div>
@@ -254,7 +254,7 @@ function update() {
     const msPerUnit = (60000 / config.ppm);
     if (now - state.lastSourceTime > msPerUnit / simStep) {
         let tid = -1;
-        if (config.logic === "MAFU") {
+        if (config.logic === "Batch") {
             if (state.activeTargetId !== -1 && !state.paths[state.activeTargetId].requestMaterial) state.activeTargetId = -1;
             if (state.activeTargetId === -1 && anyReq) state.activeTargetId = state.paths.find(p => p.requestMaterial).id;
             tid = state.activeTargetId;
