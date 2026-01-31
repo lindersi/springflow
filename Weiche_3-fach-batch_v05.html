@@ -172,7 +172,7 @@ function update() {
             }
             p.units.forEach(u => u.isStauNachlauf = true);
             
-            p.cycleTimer = (config.maxCap * 4500);
+            p.cycleTimer = (config.maxCap * 4700);
             p.requestMaterial = true; 
             p.maxActive = false;
             p.maxSensorTimer = 0; // Timer resetten für sofortige Grün-Schaltung
@@ -181,7 +181,7 @@ function update() {
         // MISS Logik: Wenn Zyklus fertig, aber Max noch nicht voll
         if (p.cycleTimer <= 0 && !p.maxActive && !isBlocked) {
             p.missCheckTimer += (16.67 * simStep);
-            if (p.missCheckTimer >= 4500) {
+            if (p.missCheckTimer >= 4700) {
                 p.missedUnits++;
                 p.starvationTimer = now + (2250 / simStep);
                 p.missCheckTimer = 0;
@@ -299,7 +299,7 @@ function draw() {
         
         if (p.cycleTimer > 0) {
             ctx.fillStyle = '#0af';
-            ctx.fillRect(END_X + 15, p.y + 18, (p.cycleTimer / (config.maxCap * 4500)) * 20, 3);
+            ctx.fillRect(END_X + 15, p.y + 18, (p.cycleTimer / (config.maxCap * 4700)) * 20, 3);
         }
         ctx.font = 'bold 12px monospace'; ctx.fillStyle = '#0f0';
         ctx.fillText(`OK:   ${p.processedUnits}`, END_X + 50, p.y - 5);
